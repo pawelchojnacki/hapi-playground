@@ -1,0 +1,23 @@
+{
+  "name": "hapi-playground",
+  "version": "0.0.1",
+  "description": "A sample server to learn ECMAScript2015, Hapi and Gulp",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pawelchojnacki/hapi-playground.git"
+  },
+  "author": "Pawel Chojnacki",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pawelchojnacki/hapi-playground/issues"
+  },
+  "homepage": "https://github.com/pawelchojnacki/hapi-playground#readme",
+  "dependencies": {
+    "babel": "^5.6.14",
+    "hapi": "^8.8.0"
+  }
+}
