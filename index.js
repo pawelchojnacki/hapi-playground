@@ -2,6 +2,7 @@
 'use strict';
 
 var Hapi = require('hapi');
+var Good = require('good');
 
 var server = new Hapi.Server();
 server.connection({
@@ -25,7 +26,25 @@ server.route({
   }
 });
 
-server.start(function () {
-  console.log('Server running at:', server.info.uri);
+server.register({
+  register: Good,
+  options: {
+    reporters: [{
+      reporter: require('good-console'),
+      events: {
+        response: '*',
+        log: '*'
+      }
+    }]
+  }
+}, function onModuleLoadingError(err) {
+  if (err) {
+    throw err;
+  }
+
+  // the server will initialize on error
+  server.start(function () {
+    console.log('Server running at:', server.info.uri);
+  });
 });
 

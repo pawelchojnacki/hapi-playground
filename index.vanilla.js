@@ -1,5 +1,6 @@
 // Sample Hapi configuration file
 let Hapi = require('hapi');
+let Good = require('good');
 
 let server = new Hapi.Server();
 server.connection({
@@ -23,8 +24,29 @@ server.route({
   }
 })
 
-server.start(
-  () => {
-    console.log('Server running at:', server.info.uri);
+server.register(
+  {
+    register: Good,
+    options: {
+      reporters: [{
+        reporter: require('good-console'),
+        events: {
+          response: '*',
+          log: '*'
+        }
+      }]
+    }
+  },
+  function onModuleLoadingError (err) {
+    if (err) {
+      throw err;
+    }
+
+    // the server will initialize on error
+    server.start(
+      () => {
+        console.log('Server running at:', server.info.uri);
+      }
+    );
   }
 );
