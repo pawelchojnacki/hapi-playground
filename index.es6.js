@@ -18,8 +18,11 @@ server.route({
 
 server.route({
   method: 'GET',
-  path: '/hello-{name}',
+  path: '/hello-{name?}',
   handler: (request, reply) => {
+    if (!request.params.name) {
+      request.params.name = "user";
+    }
     reply('Hello, ' + encodeURIComponent(request.params.name) + '!');
   }
 })
