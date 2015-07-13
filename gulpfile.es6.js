@@ -8,7 +8,7 @@ gulp.task('default', () => {
     .pipe(watch('*.es6.js'))
     .pipe(babel())
     .pipe(rename( (path) => {
-      path.basename = path.basename.slice(0, -4);
+      path.basename = path.basename.replace('.es6','');
       path.extname = '.js';
     }))
     .pipe(gulp.dest('.'));
